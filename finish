@@ -1,0 +1,20 @@
+<html>
+    <head></head>
+    <body>
+        FINISH
+    </body>
+    <script>
+        function init() {
+            window.postMessage('finish');
+        }
+
+        function whenRNPostMessageReady(cb) {
+            if (window.isReady) cb();
+            else setTimeout(function() { whenRNPostMessageReady(cb) }, 1000);
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            whenRNPostMessageReady(init);
+        }, false);
+    </script>
+</html>
