@@ -10,14 +10,14 @@
             var head = document.getElementsByTagName('head').item(0);
             var script = document.createElement('script');
             script.setAttribute('type', 'text/javascript');
-            script.setAttribute('src', 'https://test.oppwa.com/v1/paymentWidgets.js?checkoutId=AAA3A4DF77A448F3739A73F0760BD887.sbg-vm-tx01');
+            script.setAttribute('src', 'https://test.oppwa.com/v1/paymentWidgets.js?checkoutId=' + window.checkoutId);
             head.appendChild(script);
         }
 
-        loadPayments();
-
         function init() {
-            window.postMessage('start');
+            if (window.checkoutId) {
+                loadPayments();
+            }
         }
 
         function whenRNPostMessageReady(cb) {
