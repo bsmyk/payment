@@ -15,11 +15,10 @@
         }
 
         function init() {
-            alert('sds');
-            alert(document.cookie);
-            if (window.checkoutId) {
-                loadPayments();
-            }
+            loadPayments();
+//             if (window.checkoutId) {
+//                 loadPayments();
+//             }
         }
 
         function whenRNPostMessageReady(cb) {
