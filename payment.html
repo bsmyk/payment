@@ -1,7 +1,7 @@
 <html>
     <head></head>
     <body>
-        <form action="https://kontramedia.github.io/payment/finish.html" class="paymentWidgets">VISA MASTER AMEX</form>
+        <form action="https://kontramedia.github.io/payment/finish.html?v2" class="paymentWidgets">VISA MASTER AMEX</form>
     </body>
     <script>
         var form = document.getElementsByTagName('form')[0];
@@ -17,6 +17,7 @@
         loadPayments();
 
         function init() {
+            window.postMessage('start');
             loadPayments();
 //             if (window.checkoutId) {
 //                 loadPayments();
