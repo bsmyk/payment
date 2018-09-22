@@ -4,8 +4,6 @@
         <form action="https://kontramedia.github.io/payment/finish.html?v3" class="paymentWidgets">VISA MASTER AMEX</form>
     </body>
     <script>
-        alert('script');
-        console.log('sdfsdf');
         var form = document.getElementsByTagName('form')[0];
 
         function loadPayments() {
@@ -19,7 +17,7 @@
         loadPayments();
 
         function init() {
-            alert('init');
+            console.log('init');
             window.postMessage('start');
             loadPayments();
 //             if (window.checkoutId) {
@@ -28,11 +26,13 @@
         }
 
         function whenRNPostMessageReady(cb) {
+            console.log('whenRNPostMessageReady');
             if (window.isReady) cb();
             else setTimeout(function() { whenRNPostMessageReady(cb) }, 1000);
         }
 
         window.addEventListener('DOMContentLoaded', function() {
+            console.log('DOMContentLoaded');
             whenRNPostMessageReady(init);
         }, false);
     </script>
