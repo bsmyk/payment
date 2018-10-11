@@ -1,0 +1,36 @@
+<script>
+        var wpwlOptions = {
+            locale: "{!! app()->getLocale() !!}",
+            registrations: {requireCvv: false, hideInitialPaymentForms: false},
+            forceCardHolderEqualsBillingName: true,
+            billingAddress: {
+                country: "{!! $user->customer->b_country !!}",
+                state: "{!! $user->customer->b_state !!}",
+                city: "{!! $user->customer->b_city !!}",
+                postcode: "{!! $user->customer->b_postcode !!}",
+                street1: "{!! $user->customer->b_street1 !!}",
+                street2: "{!! $user->customer->b_street2 !!}"
+            },
+            mandatoryBillingFields:{
+                country: true,
+                state: true,
+                city: true,
+                postcode: true,
+                street1: true,
+                street2: false
+            },
+
+            onReady: function () {
+                var email = '<div class="wpwl-group wpwl-clearfix wpwl-group-customer"><div class="wpwl-label wpwl-label-custom">Email</div>' +
+                    '<div class="wpwl-wrapper wpwl-wrapper-custom">' +
+                    '<input autocomplete="off" type="text" required name="customer.email" class="wpwl-control" placeholder="Email" maxlength="80" style="">' +
+                    '</div></div>';
+
+                $('form.wpwl-form-card').find('.wpwl-button').before(email);
+
+                var createRegistrationHtml = '<div class="customLabel">{!! trans('payment.store_payment_details') !!}</div><div class="customInput"><input type="checkbox" name="createRegistration" value="true" /></div>';
+                $('form.wpwl-form-card').find('.wpwl-button').before(createRegistrationHtml);
+            }
+        }
+    </script>
+    <script src="{{config('telgani.payments.hyperpay.url')}}/v1/paymentWidgets.js?checkoutId={!! $checkoutId !!}"></script>
