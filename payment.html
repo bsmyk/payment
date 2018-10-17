@@ -8,6 +8,14 @@
             locale: "en",
             registrations: {requireCvv: false, hideInitialPaymentForms: false},
             forceCardHolderEqualsBillingName: true,
+            billingAddress: {
+                country: "",
+                state: "",
+                city: "",
+                postcode: "",
+                street1: "",
+                street2: ""
+            },
             mandatoryBillingFields:{
                 country: true,
                 state: true,
@@ -29,9 +37,7 @@
                 $('form.wpwl-form-card').find('.wpwl-button').before(createRegistrationHtml);
             }
         }
-    </script>
-
-    <script>
+   
         var form = document.getElementsByTagName('form')[0];
 
         function loadPayments() {
