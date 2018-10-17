@@ -3,7 +3,7 @@
     <body></body>
     <script>
         function init() {
-            window.postMessage(location.href);
+            window.postMessage({ finish: location.search });
         }
 
         function whenRNPostMessageReady(cb) {
