@@ -4,6 +4,34 @@
         <form action="https://kontramedia.github.io/payment/finish.html?v3" class="paymentWidgets">VISA MASTER AMEX</form>
     </body>
     <script>
+        var wpwlOptions = {
+            locale: "en",
+            registrations: {requireCvv: false, hideInitialPaymentForms: false},
+            forceCardHolderEqualsBillingName: true,
+            mandatoryBillingFields:{
+                country: true,
+                state: true,
+                city: true,
+                postcode: true,
+                street1: true,
+                street2: false
+            },
+
+            onReady: function () {
+                var email = '<div class="wpwl-group wpwl-clearfix wpwl-group-customer"><div class="wpwl-label wpwl-label-custom">Email</div>' +
+                    '<div class="wpwl-wrapper wpwl-wrapper-custom">' +
+                    '<input autocomplete="off" type="text" required name="customer.email" class="wpwl-control" placeholder="Email" maxlength="80" style="">' +
+                    '</div></div>';
+
+                $('form.wpwl-form-card').find('.wpwl-button').before(email);
+
+                var createRegistrationHtml = '<div class="customLabel">Store payment details?</div><div class="customInput"><input type="checkbox" name="createRegistration" value="true" /></div>';
+                $('form.wpwl-form-card').find('.wpwl-button').before(createRegistrationHtml);
+            }
+        }
+    </script>
+
+    <script>
         var form = document.getElementsByTagName('form')[0];
 
         function loadPayments() {
