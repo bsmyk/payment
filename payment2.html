@@ -1,15 +1,20 @@
-<script>
+<html>
+    <head></head>
+    <body style="padding-bottom: 100px;">
+        <form action="https://kontramedia.github.io/payment/finish.html?v5" class="paymentWidgets">VISA MASTER AMEX</form>
+    </body>
+    <script>
         var wpwlOptions = {
-            locale: "{!! app()->getLocale() !!}",
+            locale: "en",
             registrations: {requireCvv: false, hideInitialPaymentForms: false},
             forceCardHolderEqualsBillingName: true,
             billingAddress: {
-                country: "{!! $user->customer->b_country !!}",
-                state: "{!! $user->customer->b_state !!}",
-                city: "{!! $user->customer->b_city !!}",
-                postcode: "{!! $user->customer->b_postcode !!}",
-                street1: "{!! $user->customer->b_street1 !!}",
-                street2: "{!! $user->customer->b_street2 !!}"
+                country: "",
+                state: "",
+                city: "",
+                postcode: "",
+                street1: "",
+                street2: ""
             },
             mandatoryBillingFields:{
                 country: true,
@@ -28,9 +33,38 @@
 
                 $('form.wpwl-form-card').find('.wpwl-button').before(email);
 
-                var createRegistrationHtml = '<div class="customLabel">{!! trans('payment.store_payment_details') !!}</div><div class="customInput"><input type="checkbox" name="createRegistration" value="true" /></div>';
+                var createRegistrationHtml = '<div class="customLabel">Store payment details?</div><div class="customInput"><input type="checkbox" name="createRegistration" value="true" /></div>';
                 $('form.wpwl-form-card').find('.wpwl-button').before(createRegistrationHtml);
             }
         }
+   
+        var form = document.getElementsByTagName('form')[0];
+
+        function loadPayments() {
+            var head = document.getElementsByTagName('head').item(0);
+            var script = document.createElement('script');
+            script.setAttribute('type', 'text/javascript');
+            script.setAttribute('src', 'https://test.oppwa.com/v1/paymentWidgets.js?checkoutId=D4AF2A907CF889EBC4FE27B673E7C22A.uat01-vm-tx02');
+            head.appendChild(script);
+        }
+            
+        loadPayments();
+
+        function init() {
+            if (window.checkoutId) {
+                loadPayments();
+            }
+        }
+
+        function whenRNPostMessageReady(cb) {
+            console.log('whenRNPostMessageReady');
+            if (window.isReady) cb();
+            else setTimeout(function() { whenRNPostMessageReady(cb) }, 1000);
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            console.log('DOMContentLoaded');
+            whenRNPostMessageReady(init);
+        }, false);
     </script>
-    <script src="{{config('telgani.payments.hyperpay.url')}}/v1/paymentWidgets.js?checkoutId={!! $checkoutId !!}"></script>
+</html>
