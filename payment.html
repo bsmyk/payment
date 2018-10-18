@@ -44,7 +44,7 @@
             var head = document.getElementsByTagName('head').item(0);
             var script = document.createElement('script');
             script.setAttribute('type', 'text/javascript');
-            script.setAttribute('src', 'https://test.oppwa.com/v1/paymentWidgets.js?checkoutId=B6FA4F3F596AC2699619F03448F85C2E.uat01-vm-tx03');
+            script.setAttribute('src', 'https://test.oppwa.com/v1/paymentWidgets.js?checkoutId=' + window.checkoutId);
             head.appendChild(script);
         }
 
