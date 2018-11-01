@@ -11,7 +11,7 @@
         var wpwlOptions = {
             style: "card",
             paymentTarget: "_top",
-            locale: "ar",
+            locale: window.lang || 'en',
             registrations: {requireCvv: false, hideInitialPaymentForms: false},
             forceCardHolderEqualsBillingName: true,
             billingAddress: {
