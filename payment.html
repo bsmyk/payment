@@ -11,7 +11,7 @@
         var wpwlOptions = {
             style: "card",
             paymentTarget: "_top",
-            locale: window.lang || 'en',
+            locale: 'en',
             registrations: {requireCvv: false, hideInitialPaymentForms: false},
             forceCardHolderEqualsBillingName: true,
             billingAddress: {
@@ -43,8 +43,6 @@
                 $('form.wpwl-form-card').find('.wpwl-button').before(createRegistrationHtml);
             }
         }
-        
-        alert(window.lang);
    
         var form = document.getElementsByTagName('form')[0];
 
@@ -57,6 +55,11 @@
         }
 
         function init() {
+            if (window.language) {
+                wpwlOptions.locale = window.language;
+                alert(window.language);
+            }
+            
             if (window.checkoutId) {
                 loadPayments();
             }
