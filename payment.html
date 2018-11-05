@@ -50,7 +50,7 @@
             var head = document.getElementsByTagName('head').item(0);
             var script = document.createElement('script');
             script.setAttribute('type', 'text/javascript');
-            script.setAttribute('src', 'https://oppwa.com/v1/paymentWidgets.js?checkoutId=' + window.checkoutId);
+            script.setAttribute('src', window.paymentWidget + '?checkoutId=' + window.checkoutId);
             head.appendChild(script);
         }
 
@@ -63,7 +63,7 @@
             wpwlOptions.billingAddress.street1 = window.b_street1 || "";
             wpwlOptions.billingAddress.street2 = window.b_street2 || "";
             
-            if (window.checkoutId) {
+            if (window.checkoutId && window.paymentWidget) {
                 loadPayments();
             }
         }
