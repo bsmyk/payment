@@ -55,10 +55,13 @@
         }
 
         function init() {
-            if (window.language) {
-                wpwlOptions.locale = window.language;
-                alert(window.language);
-            }
+            wpwlOptions.locale = window.language || 'en';
+            wpwlOptions.billingAddress.country = window.b_country || "";
+            wpwlOptions.billingAddress.state = window.b_state || "";
+            wpwlOptions.billingAddress.city = window.b_city || "";
+            wpwlOptions.billingAddress.postcode = window.b_postcode || "";
+            wpwlOptions.billingAddress.street1 = window.b_street1 || "";
+            wpwlOptions.billingAddress.street2 = window.b_street2 || "";
             
             if (window.checkoutId) {
                 loadPayments();
